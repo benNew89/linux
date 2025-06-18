@@ -5,11 +5,13 @@ jobs:
     docker:
       - image: cimg/python:3.8.14
     steps:
+      - run: git --version
       - checkout
   python-version-check-2:
     docker:
       - image: cimg/python:3.10.12
     steps:
+      - run: git --version
       - checkout
 
 workflows:
