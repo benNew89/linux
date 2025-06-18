@@ -1,0 +1,19 @@
+version: 2.1
+
+jobs:
+  python-version-check-1:
+    docker:
+      - image: cimg/python:3.8.14
+    steps:
+      - checkout
+  python-version-check-2:
+    docker:
+      - image: cimg/python:3.10.12
+    steps:
+      - checkout
+
+workflows:
+  setup-workflow:
+    jobs:
+      - python-version-check-1
+      - python-version-check-2
