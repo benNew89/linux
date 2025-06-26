@@ -19,6 +19,12 @@ jobs:
     steps:
       - run: git --version
       - checkout
+    python-version-check-4:
+    docker:
+      - image: cimg/python:3.13.5
+    steps:
+      - run: git --version
+      - checkout
 
 workflows:
   setup-workflow:
@@ -26,3 +32,4 @@ workflows:
       - python-version-check-1
       - python-version-check-2
       - python-version-check-3
+      - python-version-check-4
