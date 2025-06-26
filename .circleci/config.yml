@@ -1,49 +1,20 @@
 version: 2.1
 
-# jobs:
-  # python-version-check-1:
-  #   docker:
-  #     - image: cimg/python:3.8.14
-  #   steps:
-  #     - run: git --version
-  #     - checkout
-  # python-version-check-2:
-  #   docker:
-  #     - image: cimg/python:3.10.12
-  #   steps:
-  #     - run: git --version
-  #     - checkout
-  # python-version-check-3:
-  #   docker:
-  #     - image: cimg/python:3.9.0
-  #   steps:
-  #     - run: git --version
-  #     - checkout
-  # python-version-check-4:
-  #   docker:
-  #     - image: cimg/python:3.13.5
-  #   steps:
-  #     - run: git --version
-  #     - checkout
+jobs:
+  python-version-check:
+    steps:
+      - run: git --version
+      - checkout
 
 workflows:
   setup-workflow:
     jobs:
-      - python-version-check-1:
+      - python-version-check:
           docker:
             - image: cimg/python:3.8.14
-          steps:
-            - run: git --version
-            - checkout
-      - python-version-check-2:
+      - python-version-check:
           docker:
             - image: cimg/python:3.9.0
-          steps:
-            - run: git --version
-            - checkout
-      - python-version-check-3:
+      - python-version-check:
           docker:
             - image: cimg/python:3.10.12
-          steps:
-            - run: git --version
-            - checkout
