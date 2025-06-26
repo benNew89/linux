@@ -2,11 +2,22 @@ version: 2.1
 
 jobs:
   python-version-check:
-    parameters:
-      python-version:
-        type: string
     docker:
-      - image: cimg/python:<< parameters.python-version >>
+      - image: cimg/python:3.8.14
+    resource_class: small
+    steps:
+      - run: git --version
+      - checkout
+  python-version-check-2:
+    docker:
+      - image: cimg/python:3.9.0
+    resource_class: small
+    steps:
+      - run: git --version
+      - checkout
+  python-version-check-3:
+    docker:
+      - image: cimg/python:3.10.12
     resource_class: small
     steps:
       - run: git --version
@@ -15,12 +26,6 @@ jobs:
 workflows:
   setup-workflow:
     jobs:
-      - python-version-check:
-          name: "python-3.8.14"
-          python-version: "3.8.14"
-      - python-version-check:
-          name: "python-3.9.0"
-          python-version: "3.9.0"
-      - python-version-check:
-          name: "python-3.10.12"
-          python-version: "3.10.12"
+      - python-version-check
+      - python-version-check-2
+      - python-version-check-3
